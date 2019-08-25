@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, Image, View } from "react-native";
-import { ListItem, List } from "native=base";
-import { View } from "native-base";
+import { ScrollView, StyleSheet, Text, Image } from "react-native";
+import { ListItem, List, View } from "native-base";
 
 export default class SearchBody extends Component {
   render() {
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
   },
   img: {
     height: 200,
-    weight: 200,
+    width: 200,
     justifyContent: "center",
     alignItems: "center"
   },
