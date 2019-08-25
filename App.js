@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { StyleSheet, Platform, Text, View } from "react-native";
 import Landing from "./src/Landing";
 import Search from "./src/Search";
+import PokeLoader from "./src/PokeLoader";
+import SearchBody from "./src/SearchBody";
 
 export default class App extends Component {
   state = {
