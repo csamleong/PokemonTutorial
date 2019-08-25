@@ -1,6 +1,16 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, Image } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  Image,
+  Dimensions,
+  ImageBackground
+} from "react-native";
 import { ListItem, List, View } from "native-base";
+
+var height = Dimensions.get("window").height;
+var width = Dimensions.get("window").width;
 
 export default class SearchBody extends Component {
   render() {
@@ -11,45 +21,56 @@ export default class SearchBody extends Component {
     console.log("seachingbody");
     console.log(pokemon);
     return (
-      <ScrollView style={styles.container}>
-        <Text style={styles.header}>
-          #{pokemon.id} - {pokemon.name.toUpperCase()}
-        </Text>
-        <View style={styles.viewStyle}>
-          <Image
-            source={{ uri: pokemon.sprites.front_default }}
-            style={styles.img}
-          />
-        </View>
-        <View style={styles.info}>
-          <ListItem itemDivider>
-            <Text style={{ fontWeight: "bold" }}>Size</Text>
-          </ListItem>
-          <ListItem>
-            <Text>Weight - {pokemon.weight}kg</Text>
-          </ListItem>
-          <ListItem>
-            <Text>Height - {pokemon.height / 10}m</Text>
-          </ListItem>
-          <ListItem itemDivider>
-            <Text style={{ fontWeight: "bold" }}>Abilities</Text>
-          </ListItem>
-          <List
-            dataArray={pokemon.abilities}
-            renderRow={item => (
-              <ListItem>
-                <Text>{item.ability.name}</Text>
-              </ListItem>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          ></List>
-        </View>
-      </ScrollView>
+      <ImageBackground
+        style={styles.backgroundImg}
+        source={require("../assets/raids_loading.png")}
+      >
+        <ScrollView style={styles.container}>
+          <Text style={styles.header}>
+            #{pokemon.id} - {pokemon.name.toUpperCase()}
+          </Text>
+          <View style={styles.viewStyle}>
+            <Image
+              source={{ uri: pokemon.sprites.front_default }}
+              style={styles.img}
+            />
+          </View>
+          <View style={styles.info}>
+            <ListItem itemDivider>
+              <Text style={{ fontWeight: "bold" }}>Size</Text>
+            </ListItem>
+            <ListItem>
+              <Text>Weight - {pokemon.weight}kg</Text>
+            </ListItem>
+            <ListItem>
+              <Text>Height - {pokemon.height / 10}m</Text>
+            </ListItem>
+            <ListItem itemDivider>
+              <Text style={{ fontWeight: "bold" }}>Abilities</Text>
+            </ListItem>
+            <List
+              dataArray={pokemon.abilities}
+              renderRow={item => (
+                <ListItem>
+                  <Text>{item.ability.name}</Text>
+                </ListItem>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            ></List>
+          </View>
+        </ScrollView>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  backgroundImg: {
+    flex: 1,
+    resizeMode: "cover",
+    height: height,
+    width: width
+  },
   container: {
     flex: 1
   },
