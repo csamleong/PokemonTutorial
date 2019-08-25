@@ -18,11 +18,31 @@ export default class SearchBody extends Component {
         <View style={styles.viewStyle}>
           <Image
             source={{ uri: pokemon.sprites.front_default }}
-            style={style.img}
+            style={styles.img}
           />
         </View>
-        <View style={style.info}>
-          <ListItem itemDivider />
+        <View style={styles.info}>
+          <ListItem itemDivider>
+            <Text style={{ fontWeight: "bold" }}>Size</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Weight - {pokemon.weight}kg</Text>
+          </ListItem>
+          <ListItem>
+            <Text>Height - {pokemon.height / 10}m</Text>
+          </ListItem>
+          <ListItem itemDivider>
+            <Text style={{ fontWeight: "bold" }}>Abilities</Text>
+          </ListItem>
+          <List
+            dataArray={pokemon.abilities}
+            renderRow={item => (
+              <ListItem>
+                <Text>{item.ability.name}</Text>
+              </ListItem>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          ></List>
         </View>
       </ScrollView>
     );
